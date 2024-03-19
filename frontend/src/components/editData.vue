@@ -1,15 +1,15 @@
 <template>
-<div class="header">ADD TASK</div>
+<div class="header">UPDATE TASK</div>
 <div class="container">
-    <input class="inputFields" type="text"  placeholder="Enter title" v-model="title">
+    <input class="inputFields" type="text"  placeholder="re-enter title" v-model="title">
     <br><br><br>
-    <input class="inputFields" type="text" placeholder="Enter task" v-model="task">
+    <input class="inputFields" type="text" placeholder="re-enter task" v-model="task">
     <br><br><br>
-    <input class="inputFields" type="text"  placeholder="Enter email" v-model="email">
+    <input class="inputFields" type="text"  placeholder="re-enter email" v-model="email">
     <br><br><br>
 </div>
 
-    <button class="submitButton" @click="addTask">Add Task</button>
+    <button class="submitButton" @click="updateTask">Update Task</button>
     <button class="backToHome" @click="backToHome">Back</button>
 
 </template>
@@ -27,25 +27,12 @@ data(){
 },
 
 methods: {
-    async addTask(){
-        try{
-        await axios.post('http://localhost:5000/data', {
-            my_title: this.title,
-            my_task: this.task,
-            my_email: this.email
+    async updateTask(id){
+        await axios.put(`http://localhost:5000/data/id`, {
+          my_title: this.title,
+          my_task: this.task,
+          my_email: this.email
         })
-
-            this.title = ''
-            this.task = ''
-            this.email = ''
-
-            setTimeout(() => {
-            this.$router.push('/')
-            }, 1500)
-        }
-        catch(err){
-            console.log(err)
-        }
     },
 
     backToHome(){

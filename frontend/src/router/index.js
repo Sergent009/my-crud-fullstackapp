@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import getData from '../views/getData.vue'
 import createData from '../views/createData.vue'
+import updateData from '../views/updateData.vue'
 
 const routes = [
   {
@@ -13,7 +14,11 @@ const routes = [
     path: '/add',
     name: 'createData',
     component: createData
-
+  },
+  {
+    path: '/update',
+    name: 'updateData',
+    component: updateData
   },
 ]
 
