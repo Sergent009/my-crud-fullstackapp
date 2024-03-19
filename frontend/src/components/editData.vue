@@ -27,13 +27,13 @@ data(){
 },
 
 methods: {
-    async updateTask(id){
-        await axios.put(`http://localhost:5000/data/id`, {
-          my_title: this.title,
-          my_task: this.task,
-          my_email: this.email
-        })
-    },
+    // async updateTask(){
+    //     await axios.put(`http://localhost:5000/data/${this.$route.params.id}`, {
+    //       my_title: this.title,
+    //       my_task: this.task,
+    //       my_email: this.email
+    //     })
+    // },
 
     backToHome(){
         this.$router.push('/')
