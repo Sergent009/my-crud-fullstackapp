@@ -1,12 +1,18 @@
 <template>
 <div class="header">ADD TASK</div>
 <div class="container">
+    <div>
     <input class="inputFields" type="text"  placeholder="Enter title" v-model="title">
     <br><br><br>
+    </div>
+    <div>
     <input class="inputFields" type="text" placeholder="Enter task" v-model="task">
     <br><br><br>
+    </div>
+    <div>
     <input class="inputFields" type="text"  placeholder="Enter email" v-model="email">
     <br><br><br>
+    </div>
 </div>
 
     <button class="submitButton" @click="addTask">Add Task</button>
@@ -18,6 +24,9 @@
 import axios from 'axios'
 
 export default {
+components:{
+},
+
 data(){
     return{
         title: '',
