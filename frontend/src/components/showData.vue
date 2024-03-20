@@ -27,10 +27,10 @@
           <td>{{ item.my_task }}</td>
           <td>{{ item.my_email }}</td>
           <td>
-            <router-link :to="{name: 'updateData'}">
+            <router-link :to="{name: 'updateData',  params: { id: item.id } }">
             <button class="actionButtons" id="edit">Edit</button>
             </router-link>
-            <button class="actionButtons" id="delete">Delete</button>
+            <button class="actionButtons" id="delete" @click="deleteTask(item.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -54,6 +54,18 @@ data(){
 async created(){
     const response = await axios.get('http://localhost:5000/data')
     this.data = response.data
+},
+
+methods:{
+  async deleteTask(id){
+    try{
+   await axios.delete(`http://localhost:5000/data/${id}`)
+    // this.data = response.data
+    } 
+    catch(err){
+      console.log(err)
+    }
+  }
 }
 }
 </script>
@@ -144,6 +156,7 @@ async created(){
 }
 
 #delete{
+  width: 25%;
     background: red;
     color: white;
 }

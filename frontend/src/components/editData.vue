@@ -26,14 +26,38 @@ data(){
     }
 },
 
+created:function(){
+    this.getDataById()
+},
+
 methods: {
-    // async updateTask(){
-    //     await axios.put(`http://localhost:5000/data/${this.$route.params.id}`, {
-    //       my_title: this.title,
-    //       my_task: this.task,
-    //       my_email: this.email
-    //     })
-    // },
+    async getDataById(){
+        try{
+            const response = await axios.get(`http://localhost:5000/data/${this.$route.params.id}`)
+            this.title = response.data.my_title
+            this.task = response.data.my_task
+            this.email = response.data.my_email
+        }
+        catch(err){
+            console.log(err)
+        }
+    },
+
+    async updateTask(){
+        await axios.put(`http://localhost:5000/data/${this.$route.params.id}`, {
+            my_title: this.title,
+            my_task: this.task,
+            my_email:this.email
+        })
+        
+        this.title = ''
+        this.task = ''
+        this.email = ''
+
+        setTimeout(() => {
+        this.$router.push('/')
+        }, 1000)
+    },
 
     backToHome(){
         this.$router.push('/')
