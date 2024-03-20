@@ -51,16 +51,20 @@ data(){
     }
 },
 
-async created(){
-    const response = await axios.get('http://localhost:5000/data')
-    this.data = response.data
+created:function(){
+   this.getTasks()
 },
 
 methods:{
-  async deleteTask(id){
+  async getTasks(){
+    const response = await axios.get('http://localhost:5000/data')
+    this.data = response.data
+  },
+
+async deleteTask(id){
     try{
    await axios.delete(`http://localhost:5000/data/${id}`)
-    // this.data = response.data
+   this.getTasks()
     } 
     catch(err){
       console.log(err)
